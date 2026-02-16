@@ -1,0 +1,39 @@
+{
+  "name": "@starspace/dao-contracts",
+  "version": "0.1.0",
+  "description": "Smart contracts for *Space DAO - proportional governance with sunset triggers",
+  "private": false,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:coverage": "hardhat coverage",
+    "test:gas": "REPORT_GAS=true hardhat test",
+    "deploy:testnet": "hardhat run scripts/deploy.ts --network polygonMumbai",
+    "deploy:mainnet": "hardhat run scripts/deploy.ts --network polygon",
+    "verify": "hardhat verify",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "format": "prettier --write 'contracts/**/*.sol'"
+  },
+  "keywords": [
+    "dao",
+    "governance",
+    "polygon",
+    "solidity",
+    "ethereum",
+    "web3"
+  ],
+  "author": "Davis Monaghan <david@davis9001.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "hardhat": "^2.19.0",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solhint": "^4.1.0",
+    "prettier": "^3.1.0",
+    "prettier-plugin-solidity": "^1.3.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts-upgradeable": "^5.0.0"
+  }
+}
