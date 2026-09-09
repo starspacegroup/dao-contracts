@@ -1,26 +1,27 @@
 # *Space DAO Contracts
 
-Smart contracts for the *Space Wyoming DAO LLC - a decentralized organization with proportional governance and hardcoded sunset triggers.
+Token contracts for the *Space Wyoming DAO LLC. Governance, staking, treasury, and founder-transition contracts are roadmap designs and are not implemented or audited here.
 
 ---
 
 ## 🌟 Token System
 
 **SpaceMoney (SM)** - Economic Token
-- Buyable, transferable
-- Revenue share, treasury share
-- Stakeable for increased voting power (capped by ST balance)
-- Used to fund proposals
+- Standard transferable ERC-20
+- Fixed maximum supply of 1 billion SM, minted to the deployer at deployment
+- Holders can burn their own tokens
 
 **SpaceTime (ST)** - Governance Token
-- Earned only (never purchasable)
-- Non-transferable
-- Required to unlock SM staking capacity
-- Decays slowly (requires ongoing participation)
+- Role-gated minting and burning
+- Non-transferable (soulbound)
+- Starts with zero supply
+- Records a decay timestamp when minted, but does not currently apply decay; `effectiveBalance()` returns the token balance unchanged
 
 ---
 
-## 🗳️ Governance Model
+## 🗳️ Governance Roadmap
+
+The following model describes intended future contracts, not executable behavior in the current repository.
 
 **Proportional Voting:**
 - Each proposal specifies budget: X% SM + Y% ST
@@ -44,20 +45,22 @@ Smart contracts for the *Space Wyoming DAO LLC - a decentralized organization wi
 
 ## 🏗️ Contract Architecture
 
+Only the two contracts under `tokens/` currently exist. The remaining entries are roadmap components.
+
 ```
 contracts/
 ├── tokens/
 │   ├── SpaceMoney.sol          # ERC20 economic token
 │   └── SpaceTime.sol           # Non-transferable governance token
-├── governance/
-│   ├── ProposalManager.sol     # Create/execute proposals
-│   ├── VotingEngine.sol        # Proportional voting logic
-│   └── FounderVeto.sol         # Veto with sunset triggers
-├── staking/
-│   ├── SMStaking.sol           # SM staking with time-weighted multipliers
-│   └── STCapValidator.sol      # ST balance validation for staking
-└── treasury/
-    └── Treasury.sol            # Multi-sig treasury management
+├── governance/                 # Roadmap: not implemented
+│   ├── ProposalManager.sol
+│   ├── VotingEngine.sol
+│   └── FounderVeto.sol
+├── staking/                    # Roadmap: not implemented
+│   ├── SMStaking.sol
+│   └── STCapValidator.sol
+└── treasury/                   # Roadmap: not implemented
+    └── Treasury.sol
 ```
 
 ---
@@ -65,8 +68,8 @@ contracts/
 ## 🚀 Development
 
 ### Prerequisites
-- Node.js 18+
-- Hardhat or Foundry
+- Node.js 20-22
+- npm
 
 ### Setup
 ```bash
@@ -92,8 +95,8 @@ npm run deploy:mainnet
 
 ## 🔒 Security
 
-- [ ] OpenZeppelin base contracts
-- [ ] Comprehensive test coverage (>95%)
+- [x] OpenZeppelin base contracts
+- [x] Tests for the current token behavior
 - [ ] External audit before mainnet deployment
 - [ ] Testnet deployment & community testing
 - [ ] Bug bounty program
